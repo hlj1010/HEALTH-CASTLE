@@ -4,6 +4,15 @@ public class OutPatientInfo {
 	String department;
 	String dischargeDate;
 
+	public OutPatientInfo() {
+
+	}
+
+	public OutPatientInfo(String department, String dischargeDate) {
+		this.department = department;
+		this.dischargeDate = dischargeDate;
+	}
+
 	public void getOutPatientDetails() {
 		Scanner userInput2 = new Scanner(System.in);
 		System.out.println("Please enter the department: ");
@@ -36,6 +45,13 @@ public class OutPatientInfo {
 
 	public void setDischargeDate(String dischargeDate) {
 		this.dischargeDate = dischargeDate;
+	}
+
+	public boolean valid() {
+		if (department == null || dischargeDate == null) {
+			return false;
+		}
+		return true;
 	}
 
 	public void printPatientDetails() {

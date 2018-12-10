@@ -1,37 +1,27 @@
 public class RemoteControl {
-	Command[] onCommands;
-	Command[] offCommands;
+	Command[] Commands;
 
-	public RemoteControl() {
-		onCommands = new Command[2];
-		offCommands = new Command[2];
+	public RemoteControl(int n) {
+		Commands = new Command[n];
 
 		Command noCommand = new NoCommand();
-		for (int i = 0; i < 2; i++) {
-			onCommands[i] = noCommand;
-			offCommands[i] = noCommand;
+		for (int i = 0; i < n; i++) {
+			Commands[i] = noCommand;
 		}
 	}
 
-	public void setCommand(int slot, Command onCommand, Command offCommand) {
-		onCommands[slot] = onCommand;
-		offCommands[slot] = offCommand;
+	public void setCommand(int slot, Command onCommand) {
+		Commands[slot] = onCommand;
 	}
 
-	public void onButtonWasPushed(int slot) {
-		onCommands[slot].execute();
-	}
-
-	public void offButtonWasPushed(int slot) {
-		offCommands[slot].execute();
+	public void ButtonWasPushed(int slot) {
+		Commands[slot].execute();
 	}
 
 	public String toString() {
 		StringBuffer stringBuff = new StringBuffer();
-		stringBuff.append("\n------ Remote Control -------\n");
-		for (int i = 0; i < onCommands.length; i++) {
-			stringBuff.append("[slot " + i + "] " + onCommands[i].getClass().getName() + "    "
-					+ offCommands[i].getClass().getName() + "\n");
+		for (int i = 0; i < Commands.length; i++) {
+			stringBuff.append("[Option " + (i + 1) + "] " + Commands[i].getDescription() + "    " + "\n");
 		}
 		return stringBuff.toString();
 	}

@@ -1,15 +1,32 @@
 import java.util.Scanner;
 
 public class InPatientInfo {
+	String doctorName;
 	String admitDate;
 	String wardNumber;
 	String roomNumber;
 	String bedNumber;
 
+	public InPatientInfo() {
+
+	}
+
+	public InPatientInfo(String doctorName, String admitDate, String wardNumber, String roomNumber, String bedNumber) {
+		this.doctorName = doctorName;
+		this.admitDate = admitDate;
+		this.wardNumber = wardNumber;
+		this.roomNumber = roomNumber;
+		this.bedNumber = bedNumber;
+	}
+
 	public void getInPatientDetails() {
 		Scanner userInput1 = new Scanner(System.in);
-		System.out.println("Enter Admit Date: ");
+		System.out.println("Enter DoctorName: ");
 		String Input1 = userInput1.nextLine();
+		this.setDoctorName(Input1);
+
+		System.out.println("Enter Admit Date: ");
+		Input1 = userInput1.nextLine();
 		this.setAdmitDate(Input1);
 
 		System.out.println("Enter Ward Number: ");
@@ -26,11 +43,21 @@ public class InPatientInfo {
 		// userInput1.close();
 	}
 
-	public void setInPatientDetails(String admitDate, String wardNumber, String roomNumber, String bedNumber) {
+	public void setInPatientDetails(String doctorName, String admitDate, String wardNumber, String roomNumber,
+			String bedNumber) {
+		this.setDoctorName(doctorName);
 		this.setAdmitDate(admitDate);
 		this.setWardNumber(wardNumber);
 		this.setRoomNumber(roomNumber);
 		this.setBedNumber(bedNumber);
+	}
+
+	public String getDoctorName() {
+		return doctorName;
+	}
+
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
 	}
 
 	public String getAdmitDate() {
@@ -66,6 +93,7 @@ public class InPatientInfo {
 	}
 
 	public void printPatientDetails() {
+		System.out.println("Doctor Name: " + this.getDoctorName());
 		System.out.println("Admit Date: " + this.getAdmitDate());
 		System.out.println("Ward Number: " + this.getWardNumber());
 		System.out.println("Room Number: " + this.getRoomNumber());

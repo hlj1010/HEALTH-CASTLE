@@ -11,25 +11,17 @@ public class PatientDescription {
 	String contactNumber;
 	String registrationDate;
 	String insurancePolicyID;
-	String doctorName;
-	String patientType;
-	InPatientInfo inpatient = null;
-	OutPatientInfo outpatient = null;
 	boolean quit = false;
+
+	public PatientDescription() {
+
+	}
 
 	public static synchronized PatientDescription getInstance() {
 		if (instance == null) {
 			instance = new PatientDescription();
 		}
 		return instance;
-	}
-
-	public String getPatientType() {
-		return patientType;
-	}
-
-	public void setPatientType(String patientType) {
-		this.patientType = patientType;
 	}
 
 	public String getName() {
@@ -105,36 +97,12 @@ public class PatientDescription {
 		this.registrationDate = registrationDate;
 	}
 
-	public String getDoctorName() {
-		return doctorName;
-	}
-
-	public void setDoctorName(String doctorName) {
-		this.doctorName = doctorName;
-	}
-
 	public String getInsurancePolicyID() {
 		return insurancePolicyID;
 	}
 
 	public void setInsurancePolicyID(String insurancePolicyID) {
 		this.insurancePolicyID = insurancePolicyID;
-	}
-
-	public void setInPatientInfo(InPatientInfo inpatient) {
-		this.inpatient = inpatient;
-	}
-
-	public InPatientInfo getInPatientInfo() {
-		return inpatient;
-	}
-
-	public void setOutPatientInfo(OutPatientInfo outpatient) {
-		this.outpatient = outpatient;
-	}
-
-	public OutPatientInfo getOutPatientInfo() {
-		return outpatient;
 	}
 
 	public void getPatientDetails() {
@@ -225,14 +193,6 @@ public class PatientDescription {
 			}
 			this.setRegistrationDate(Input);
 
-			System.out.println("Please enter the doctor's name: ");
-			Input = userInput.nextLine();
-			if (Input.equals("q")) {
-				System.out.println("This attempt has been cancelled.");
-				continue;
-			}
-			this.setDoctorName(Input);
-
 			System.out.println("Please enter the Insurance Policy ID: ");
 			Input = userInput.nextLine();
 			if (Input.equals("q")) {
@@ -240,6 +200,8 @@ public class PatientDescription {
 				continue;
 			}
 			this.setInsurancePolicyID(Input);
+			System.out.println("New patient information has been saved!");
+			break;
 		}
 
 	}
@@ -252,12 +214,24 @@ public class PatientDescription {
 		return true;
 	}
 
+	public PatientDescription(String name, String patientId, String birthday, int age, String gender, String address,
+			String contactNumber, String registrationDate, String insurancePolicyID) {
+		this.name = name;
+		this.patientId = patientId;
+		this.birthday = birthday;
+		this.age = age;
+		this.gender = gender;
+		this.address = address;
+		this.contactNumber = contactNumber;
+		this.registrationDate = registrationDate;
+		this.insurancePolicyID = insurancePolicyID;
+	}
+
 	public void printPatientDetails() {
 		System.out.println("------------------------------------------------------------------------");
 		System.out.println("Patient Details:");
 		System.out.println("----------------");
 		System.out.println("Patient ID: " + this.getPatientId());
-		System.out.println("Patient Type: " + this.getPatientType());
 		System.out.println("Name: " + this.getName());
 		System.out.println("Age: " + this.getAge());
 		System.out.println("Birthday: " + this.getBirthday());
@@ -265,11 +239,6 @@ public class PatientDescription {
 		System.out.println("Address: " + this.getAddress());
 		System.out.println("Contact Number: " + this.getContactNumber());
 		System.out.println("Registration Date: " + this.getRegistrationDate());
-		System.out.println("Doctor: " + this.getDoctorName());
 		System.out.println("Insurance Policy ID: " + this.getInsurancePolicyID());
-		if (inpatient != null)
-			inpatient.printPatientDetails();
-		if (outpatient != null)
-			outpatient.printPatientDetails();
 	}
 }
